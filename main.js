@@ -3,6 +3,8 @@ const generatePayload = require('promptpay-qr')
 let exp = require('express')
 let app = exp()
 
+let port = 1980
+
 app.set('view engine', 'ejs')
 
 // Static Setting Up
@@ -16,10 +18,8 @@ app.get('/:telNo', (req, res) => {
   let amount = parseInt(0)
   const payload = generatePayload(req.params.telNo, { amount })
 
-  // res.send(payload)
-
   async function qrRoller() {
-    const options = { type: 'svg', color: { dark: '#f5f5f5', light: '#2e2f2f' } }
+    const options = { type: 'svg', color: { dark: '#2e2f2f', light: '#f5f5f5' } }
     await new Promise((resolve, reject) => {
       qrcode.toString(payload, options, (err, svg) => {
         if (err) return reject(err)
@@ -41,7 +41,7 @@ app.get('/:telNo/:amount', (req, res) => {
   // res.send(payload)
 
   async function qrRoller() {
-    const options = { type: 'svg', color: { dark: '#f5f5f5', light: '#2e2f2f' } }
+    const options = { type: 'svg', color: { dark: '#2e2f2f', light: '#f5f5f5' } }
     await new Promise((resolve, reject) => {
       qrcode.toString(payload, options, (err, svg) => {
         if (err) return reject(err)
@@ -56,4 +56,6 @@ app.get('/:telNo/:amount', (req, res) => {
   qrRoller()
 })
 
-app.listen('3000')
+app.listen(port, () => {
+  console.log('Live on http://localhost:' + port);
+})
