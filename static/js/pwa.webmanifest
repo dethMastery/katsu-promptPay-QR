@@ -1,0 +1,16 @@
+{
+  "name": "Katsu's promptpay QRCode generator",
+  "short_name": "katsu's promptpay QR",
+  "description": "just a Promptpay QRCode generator :P",
+  "icons": [
+    {
+      "src": "/img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#2e2f2f",
+  "background_color": "#2e2f2f"
+}
